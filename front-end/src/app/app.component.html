@@ -1,0 +1,36 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#" style="width:250px">
+      <h1 class="title is-5">Students App</h1>
+    </a>
+
+    <div class="navbar-burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="student-app">
+    
+    <div class="menu-wrap">
+        <aside class="menu">
+            <ul class="menu-list">
+                <li><a routerLink="/">Dashboard</a></li>
+            </ul>
+            <p class="menu-label">App</p>
+            <ul class="menu-list">
+                <li><a routerLink="/student">Students</a></li>
+                <li><a routerLink="/class">Classes</a></li>
+            </ul>
+        
+        </aside>
+    </div>
+    <div class="content-wrap">
+        <h1 class="title">Dashboard</h1>
+        <h2 class="subtitle">Welcome to students app</h2>
+
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+.student-app .menu-wrap{
+    width: 250px;
+    position: relative;
+    height: calc(100vh - 52px);
+    float: left;
+}
+.student-app .content-wrap{
+    width: calc(100% - 250px);
+    float: right;
+    position: relative;
+    height: calc(100vh - 52px);
+    padding: 20px 30px;
+}
+.student-app .menu-list a, .menu-label{
+    padding: 0.5em 1.5em;
+}
+.student-app .menu{
+    background: #F5F5F5;
+    height: 100%;
+}

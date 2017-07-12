@@ -1,0 +1,71 @@
+<a (click)="addnew()" class="button" data-target="addNewClass">+ Add New Class</a>
+<br /><br />
+<!--Modal-->
+<div class="modal" [class.is-active]="showModal" [hidden]="!showModal" id="addNewClass">
+    <div class="modal-background" (click)="showModal=false"></div>
+    <div class="modal-card">
+        <form (submit)="addEdit()" ngNativeValidate>
+            <header class="modal-card-head">
+                <p class="modal-card-title">Modal title</p>
+                <button class="delete" (click)="showModal=false"></button>
+            </header>
+            <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Full Name</label>
+                        <p class="control">
+                            <input class="input" [(ngModel)]="data.name" type="text" name="name" placeholder="Primary input" required>
+                        </p>
+                    </div>
+
+
+                    <div class="field">
+                        <label class="label">Start Date</label>
+                        <p class="control">
+                            <input class="input" [(ngModel)]="data.start_date" type="date" name="date" placeholder="Primary input" required>
+                        </p>
+                    </div>
+            </section>
+            <footer class="modal-card-foot">
+               <button class="button is-success" type="submit">Add</button>
+                <a class="button" (click)="showModal=false">Cancel</a>
+            </footer>
+        </form>
+    </div>
+</div>
+<!--/Modal-->
+
+
+
+<nav class="panel">
+  <p class="panel-heading">
+    Classs
+  </p>
+  <div class="panel-block">
+<table class="table">
+  <thead>
+    <tr>
+      <th><abbr>ID</abbr></th>
+      <th><abbr>Name</abbr></th>
+      <th><abbr>Start Date</abbr></th>
+      <th><abbr>Action</abbr></th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th><abbr>ID</abbr></th>
+      <th><abbr>Name</abbr></th>
+      <th><abbr>Start Date</abbr></th>
+      <th><abbr>Action</abbr></th>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr *ngFor="let Class of Classs">
+      <td>{{Class.id}}</td>
+      <td>{{Class.name}}</td>
+      <td>{{Class.start_date}}</td>
+      <td><a (click)="delete(Class.id, index)" class="button is-danger">DELETE</a></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</nav>
