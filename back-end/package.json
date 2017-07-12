@@ -1,0 +1,25 @@
+{
+  "name": "student",
+  "version": "1.0.0",
+  "description": "Student & Classes",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "*",
+    "bookshelf": "^0.10.3",
+    "dotenv": "^4.0.0",
+    "express": "*",
+    "knex": "^0.13.0",
+    "lodash": "^4.17.4",
+    "mysql": "^2.13.0",
+    "redis": "*",
+    "when": "^3.7.8",
+    "morgan" : "*",
+    "uuid": "*",
+    "express-validator": "*"
+  },
+  "author": "Mahmoud Elnezamy",
+  "license": "ISC",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
