@@ -41,3 +41,13 @@ DELETE  http://localhost:4000/class/1 - delete by id
 GET     http://localhost:4000/search/student/1  - check if student exists
 GET     http://localhost:4000/search/class/1    - check if class exists
 ```
+
+## Front-end 
+Go to the front-end folder and run 
+```bash
+npm install 
+```
+To strt AngularJs app
+```bash
+ng serve
+```
