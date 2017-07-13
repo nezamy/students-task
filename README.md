@@ -32,10 +32,10 @@ POST    http://localhost:4000/class/  - Create new
 GET     http://localhost:4000/class/1 - show details 1 is ID number
 DELETE  http://localhost:4000/class/1 - delete by id
 
-GET     http://localhost:4000/class/  - list all
-POST    http://localhost:4000/class/  - Create new
-GET     http://localhost:4000/class/1 - show details 1 is ID number
-DELETE  http://localhost:4000/class/1 - delete by id
+GET     http://localhost:4000/joined/  - list of all Joined
+POST    http://localhost:4000/joined/  - Create new Join Class
+GET     http://localhost:4000/joined/1 - show all class students
+DELETE  http://localhost:4000/joined/1 - leave class by id
 
 
 GET     http://localhost:4000/search/student/1  - check if student exists
