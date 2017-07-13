@@ -6,34 +6,39 @@ import 'rxjs/add/operator/map';
 import { APP_CONFIG, AppConfig } from '../app/config/config.module';
 
 @Injectable()
-export class ClassesService {
+export class ClassStudentsService {
 
     constructor(private http: Http,  @Inject(APP_CONFIG) private config: AppConfig) {
         // console.log('StudentService');
     }
 
-    getAll(){
-        return this.http.get(`${this.config.apiEndpoint}/class`).map(this.extractData)
+    joined(){
+        return this.http.get(`${this.config.apiEndpoint}/joined`).map(this.extractData)
             .catch(this.handleError);
     }
 
-    show(id){
-        return this.http.get(`${this.config.apiEndpoint}/class/show/${id}`).map(this.extractData)
+    studentSearch(name){
+        return this.http.get(`${this.config.apiEndpoint}/search/student-by-name/${name}`).map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    classSearch(name){
+        return this.http.get(`${this.config.apiEndpoint}/search/class-by-name/${name}`).map(this.extractData)
             .catch(this.handleError);
     }
 
     create(data){
-        return this.http.post(`${this.config.apiEndpoint}/class`, data).map(this.extractData)
+        return this.http.post(`${this.config.apiEndpoint}/joined`, data).map(this.extractData)
             .catch(this.handleError);
     }
 
     update(data){
-        return this.http.put(`${this.config.apiEndpoint}/class/${data.id}`, data).map(this.extractData)
+        return this.http.put(`${this.config.apiEndpoint}/joined/${data.id}`, data).map(this.extractData)
             .catch(this.handleError);
     }
 
     delete(id){
-        return this.http.delete(`${this.config.apiEndpoint}/class/${id}`).map(this.extractData)
+        return this.http.delete(`${this.config.apiEndpoint}/joined/${id}`).map(this.extractData)
             .catch(this.handleError);
     }
 

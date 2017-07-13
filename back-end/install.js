@@ -31,7 +31,7 @@ app.get('/install', function(req, res){
 
 app.get('/reset', function(req, res){
     var resetall = new reset;
-    resetall.all();
+    resetall.all(res);
 });
 
 

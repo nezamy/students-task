@@ -22,6 +22,7 @@ var api = new restful(app);
 //Controllers
 var student = require('./controller/student');
 var classes = require('./controller/class');
+var classesStudents = require('./controller/class_students');
 var search = require('./controller/search');
 
 
@@ -31,10 +32,14 @@ app.get('/', function(req, res){
 
 api.resource('student', new student);
 api.resource('class', new classes);
+api.resource('joined', new classesStudents);
 
 var searchApi = new search;
 app.get('/search/student/:id', searchApi.student);
+app.get('/search/student-by-name/:name', searchApi.studentByName);
 app.get('/search/class/:id', searchApi.classes);
+app.get('/search/class-by-name/:name', searchApi.classesByName);
+
 
 
 app.get('/*', function(req, res){

@@ -17,6 +17,18 @@ class search {
 
     }
 
+    studentByName(req, res) {
+
+        Student.forge().query({where: {full_name: req.params.name, deleted: null}, orWhere: {email: req.params.name, deleted: null}}).fetch().then(function (data) {
+            res.json({err: {}, data: data ? data.toJSON() : {}, status: data ? 'success' : 'error'});
+        })
+
+        .catch(function (err) {
+            res.status(500).json({err: {message: err.message}, data:{}, status: 'error'});
+        });
+
+    }
+
     classes(req, res) {
 
         redis.exists('class:'+req.params.id, function(err, reply) {
@@ -25,6 +37,18 @@ class search {
             } else {
                res.json({status: false});
             }
+        });
+
+    }
+
+    classesByName(req, res) {
+
+        Class.forge().where({name: req.params.name}).fetch().then(function (data) {
+            res.json({err: {}, data: data ? data.toJSON() : {}, status: data ? 'success' : 'error'});
+        })
+
+        .catch(function (err) {
+            res.status(500).json({err: {message: err.message}, data:{}, status: 'error'});
         });
 
     }
@@ -52,7 +76,6 @@ class search {
         });
 
     }
-
    
 }
 

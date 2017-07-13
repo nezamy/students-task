@@ -17,6 +17,11 @@ export class StudentService {
             .catch(this.handleError);
     }
 
+    show(id){
+        return this.http.get(`${this.config.apiEndpoint}/student/show/${id}`).map(this.extractData)
+            .catch(this.handleError);
+    }
+
     create(data){
         return this.http.post(`${this.config.apiEndpoint}/student`, data).map(this.extractData)
             .catch(this.handleError);

@@ -45,13 +45,13 @@ class class_students{
             };
 
             Class_students.forge(fileds).save().then(function (data) {
-                redis.get('class:'+data.get('id')+':students', function(err, reply) {
+                redis.get('class:'+fileds.class_id+':students', function(err, reply) {
                     if(reply){
                         var old = JSON.parse(reply);
                         old.push(fileds);
-                        redis.set('class:'+data.get('id')+':students', JSON.stringify(old));
+                        redis.set('class:'+fileds.class_id+':students', JSON.stringify(old));
                     }else{
-                        redis.set('class:'+data.get('id')+':students', JSON.stringify(fileds));
+                        redis.set('class:'+fileds.class_id+':students', JSON.stringify(fileds));
                     }
                 });
                 res.json({err: {}, data: {id: data.get('id')}, status: 'success'});
@@ -84,18 +84,36 @@ class class_students{
     }
 
     delete(req, res){
-        Class_students.forge({
-            id: req.params.id,
-            deleted: moment().valueOf()
-        }).save().then(function (data) {
-            redis.del('class:'+req.params.id+':students', function(err, reply) {
-                res.json({err: {}, data:{id: data.get('id')}, status: 'success'});
-            });
+        var theID = req.params.id;
+        var theData;
+
+        Class_students.forge({id: theID}).fetch().then(function (data) {
+            theData = data;
+            Class_students.forge({
+                id: theID,
+            }).destroy().then(function (data) {
+                
+                redis.get('class:'+theData.class_id+':students', function(err, reply) {
+                    
+                    var old = JSON.parse(reply);
+                    old.forEach(function(element, k) {
+                        if(element.student_id == theData.student_id){
+                            old.splice(k, 1);
+                            redis.set('class:'+theData.class_id+':students', JSON.stringify(old));
+                            return res.json({err: {}, data:{id: data.get('id')}, status: 'success'});
+                        }
+                    });
+                    
+                });
+
+            })
+
         })
-        
+
         .catch(function (err) {
-            res.status(500).json({err: err, data:{}, status: 'error'});
+            res.status(500).json({err: err, data:{}, status: err.message});
         });
+
     }
 }
 

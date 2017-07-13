@@ -1,0 +1,76 @@
+<a (click)="join()" class="button" data-target="Jointoclass">+ Join To Class</a>
+<br /><br />
+<!--Modal-->
+<div class="modal" [class.is-active]="showModal" [hidden]="!showModal" id="Jointoclass">
+    <div class="modal-background" (click)="showModal=false"></div>
+    <div class="modal-card">
+        <form (submit)="addEdit()" ngNativeValidate>
+            <header class="modal-card-head">
+                <p class="modal-card-title">Join Class</p>
+                <button class="delete" (click)="showModal=false"></button>
+            </header>
+            <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Student_name</label>
+                        <div class="control">
+                            <input class="input" [(ngModel)]="data.student_name" (ngModelChange)="studentSearch($event)" type="text" name="student_name" placeholder="Search in Students" required>
+                            <div class="help" [class.is-success]="foundStudent" [class.is-danger]="!foundStudent">{{ data.student_name }}</div>
+                            <input [(ngModel)]="data.student_id" type="hidden" name="student_id" placeholder="Search in Students" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Class Name</label>
+                        <div class="control">
+                            <input class="input" [(ngModel)]="data.class_name" (ngModelChange)="classSearch($event)" type="text" name="class_name" placeholder="Search in Classess" required>
+                            <div class="help" [class.is-success]="foundClass" [class.is-danger]="!foundClass">{{ data.class_name }}</div>
+                            <input [(ngModel)]="data.class_id" type="hidden" name="class_id" placeholder="Search in Classess" required>
+                        </div>
+                    </div>
+                    <p class="help is-danger">{{ formErrorMessage }}</p>
+            </section>
+            <footer class="modal-card-foot">
+               <button class="button is-success" type="submit">Add</button>
+                <a class="button" (click)="showModal=false">Cancel</a>
+            </footer>
+        </form>
+    </div>
+</div>
+<!--/Modal-->
+
+
+
+<nav class="panel">
+  <p class="panel-heading">
+    Joined Students To Classes
+  </p>
+  <div class="panel-block">
+<table class="table">
+  <thead>
+    <tr>
+      <th><abbr>ID</abbr></th>
+      <th><abbr>Class Name</abbr></th>
+      <th><abbr>Student Name</abbr></th>
+      <th><abbr>Action</abbr></th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th><abbr>ID</abbr></th>
+      <th><abbr>Class Name</abbr></th>
+      <th><abbr>Student Name</abbr></th>
+      <th><abbr>Action</abbr></th>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr *ngFor="let join of joined">
+      <td>{{join.id}}</td>
+      <td>{{ getName(join.class_id, 'class') }}</td>
+      <td>{{ getName(join.student_id, 'student') }}</td>
+      <!--<td>{{join.student_id}}</td>-->
+      <td><a (click)="delete(join.id, index)" class="button is-danger">DELETE</a></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</nav>

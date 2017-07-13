@@ -14,18 +14,28 @@ var redis  = require('redis').createClient();
 
 class reset {
 
-    all() {
+    all(res) {
 
-        connection.query('TRUNCATE TABLE student;TRUNCATE TABLE class;TRUNCATE TABLE class_students;', function (error, results, fields) {
+        connection.query('TRUNCATE TABLE student', function (error, results, fields) {
             if (error) throw error;
-            console.log('The solution is: ', results[0].solution);
+            console.log('Table student is empty now');
         });
 
-        connection.end();
+        connection.query('TRUNCATE TABLE class', function (error, results, fields) {
+            if (error) throw error;
+            console.log('Table class is empty now');
+        });
+
+        connection.query('TRUNCATE TABLE class_students', function (error, results, fields) {
+            if (error) throw error;
+            console.log('Table class_students is empty now');
+        });
 
         redis.flushdb( function (err, succeeded) {
             console.log(succeeded); // will be true if successfull
         });
+
+        res.send('All tables is Empty now');
 
     }
 
@@ -41,4 +51,4 @@ class reset {
 }
 
 
-module.exports = search;
+module.exports = reset;
