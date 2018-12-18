@@ -6,7 +6,7 @@ Go to the back-end folder and run
 ```bash
 npm install 
 ```
-To strt NodeJs app
+To start NodeJs app
 ```bash
 npm start
 ```
@@ -47,7 +47,7 @@ Go to the front-end folder and run
 ```bash
 npm install 
 ```
-To strt AngularJs app
+To start AngularJs app
 ```bash
 ng serve
 ```
